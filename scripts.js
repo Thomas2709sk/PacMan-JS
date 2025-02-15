@@ -122,7 +122,7 @@ function onKeyupAction(event){
     };
     console.log(currentDirectionPacman);
 }
-
+    
 function getCaseByIndex(index){
     let caseGame = document.querySelector("[data-numerocase='"+index+"']");
     return caseGame;
@@ -142,12 +142,17 @@ function DeplacerPacman(){
             caseDestination.dataset.direction = currentDirectionPacman;
             if(caseDestination.classList.contains("point-puissance")){
                 //Pacman peut manger les fantômes
+                let blue = document.getElementById('blue');
+                    move.pause();
+                    blue.play();
                 caseDestination.classList.remove("point-puissance");
                 pacmanCanEatGhost = true;
                 gameDiv.classList.add("pacmanCanEatGhost");
                 //au bout de 5 secondes, ne plus pouvoir manger de fantômes
                 setTimeout(()=>{
                     pacmanCanEatGhost = false;
+                    blue.pause();
+                    // move.play();
                     gameDiv.classList.remove("pacmanCanEatGhost");
                 }, 5000);
             }
@@ -185,6 +190,8 @@ function checkPacmanEatedByGhost(caseToCheck){
         }
         else{
             stopPartie();
+            var move = document.getElementById('move');
+            move.pause(); 
             // alert("PERDU !!!");
             var audioperd = document.getElementById('audio-perdu');
             audioperd.play();
