@@ -185,7 +185,10 @@ function checkPacmanEatedByGhost(caseToCheck){
         }
         else{
             stopPartie();
-            alert("PERDU !!!");
+            // alert("PERDU !!!");
+            var audioperd = document.getElementById('audio-perdu');
+            audioperd.play();
+
         }
     }
 }
